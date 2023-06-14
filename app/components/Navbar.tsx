@@ -1,7 +1,11 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import logo from "../../public/assets/logo.webp";
 import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { SignIn } from "./SignIn";
+
 export const Navbar = () => {
 	return (
 		<header className="pt-10 py-4 px-16 absolute w-full top-0 border-b border-gray-800">
@@ -17,7 +21,7 @@ export const Navbar = () => {
 					<Link href="/">Community</Link>
 				</div>
 				{/* Button  */}
-				<button className="btn">Sign In</button>
+				<SignIn />
 			</div>
 		</header>
 	);

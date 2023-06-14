@@ -5,13 +5,9 @@ import { Showcase } from "./components/Showcase";
 
 export default function Home() {
 	return (
-		<>
-			<Navbar />
-			<main className="mx-auto max-w-6xl py-4 px-8">
-				<Hero />
-				<Showcase />
-			</main>
-			<Footer />
-		</>
+		<main className="mx-auto max-w-6xl py-4 px-8">
+			<Hero />
+			<Showcase />
+		</main>
 	);
 }

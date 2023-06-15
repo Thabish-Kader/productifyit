@@ -6,7 +6,7 @@ import stevejobs from "../../public/assets/steve.webp";
 export const Hero = () => {
 	return (
 		<section className="mt-32 text-gray-100  ">
-			<div className="flex">
+			<div className="flex flex-col md:flex-row">
 				<div className="pr-8 mt-20">
 					<h1 className="text-4xl font-bold ">
 						Simplify{" "}

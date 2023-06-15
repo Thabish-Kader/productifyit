@@ -10,6 +10,9 @@ export const metadata = {
 	title: "ProductVision3D",
 	description:
 		"An application that enables entrepreneurs to design digital products within a three-dimensional canvas.",
+	icons: {
+		icon: "/icon.png",
+	},
 };
 
 export default function RootLayout({

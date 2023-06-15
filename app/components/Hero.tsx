@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import proto from "../../public/assets/proto.webp";
 import stevejobs from "../../public/assets/steve.webp";
+import { Button, SubscribeButton } from "./Buttons";
 
 export const Hero = () => {
 	return (
@@ -21,7 +22,9 @@ export const Hero = () => {
 						design compelling digital products for your website,
 						applications, or brand in 3D.
 					</p>
-					<button className="btn mt-6 p-5 px-10">Get Started</button>
+					<SubscribeButton className="btn mt-6 p-5 px-10">
+						Get Started
+					</SubscribeButton>
 				</div>
 
 				<Image src={proto} alt="proto" width={500} height={500} />

@@ -1,5 +1,4 @@
 "use client";
-import { button } from "leva";
 import { signIn, signOut, useSession } from "next-auth/react";
 import React from "react";
 
@@ -31,13 +30,35 @@ export const AuthButton = ({ className, ...props }: PropsAuthButton) => {
 
 type PropsButton = {
 	className?: string;
-	fn?: () => void;
+	onClick?: () => void;
 	children: React.ReactNode;
 };
 
-export const Button = ({ fn, className, children, ...props }: PropsButton) => {
+export const Button = ({
+	onClick,
+	className,
+	children,
+	...props
+}: PropsButton) => {
 	return (
-		<button className={`btn ${className}`} onClick={fn} {...props}>
+		<button className={` ${className}`} onClick={onClick} {...props}>
+			{children}
+		</button>
+	);
+};
+
+const handleSubscribe = () => {
+	console.log("Clicked");
+};
+
+export const SubscribeButton = ({
+	onClick,
+	className,
+	children,
+	...props
+}: PropsButton) => {
+	return (
+		<button className={`${className}`} onClick={handleSubscribe} {...props}>
 			{children}
 		</button>
 	);

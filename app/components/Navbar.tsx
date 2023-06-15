@@ -4,7 +4,7 @@ import React from "react";
 import logo from "../../public/assets/logo.webp";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { SignIn } from "./SignIn";
+import { AuthButton } from "./Buttons";
 
 export const Navbar = () => {
 	return (
@@ -21,7 +21,7 @@ export const Navbar = () => {
 					<Link href="/">Community</Link>
 				</div>
 				{/* Button  */}
-				<SignIn />
+				<AuthButton className="btn" />
 			</div>
 		</header>
 	);

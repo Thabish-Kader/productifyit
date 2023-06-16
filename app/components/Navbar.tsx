@@ -13,10 +13,12 @@ export const Navbar = () => {
 				{/* logo */}
 				<Link href={"/"} className=" flex items-center ">
 					<Image src={logo} alt="logo" height={50} width={50} />
-					<h1 className="ml-2 font-bold text-2xl">ProductVision3D</h1>
+					<h1 className="ml-2 font-bold text-md sm:text-2xl">
+						ProductVision3D
+					</h1>
 				</Link>
 				{/* Links */}
-				<div className="flex items-center space-x-2">
+				<div className=" items-center space-x-2 hidden md:flex">
 					<Link href="/">Designs</Link>
 					<Link href="https://billing.stripe.com/p/login/test_9AQg2E80Z5z6bpSeUU">
 						Customer Portal

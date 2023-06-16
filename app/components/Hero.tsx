@@ -23,9 +23,7 @@ export const Hero = () => {
 						applications, or brand in 3D.
 					</p>
 
-					<SubscribeButton className="btn mt-2 px-8 py-4">
-						Get Started
-					</SubscribeButton>
+					<SubscribeButton className="btn mt-2 px-8 py-4" />
 				</div>
 
 				<Image src={proto} alt="proto" width={500} height={500} />

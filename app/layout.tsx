@@ -23,7 +23,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<Provider>
-				<body className={`${inter.className} bg-zinc-900`}>
+				<body
+					className={`${inter.className} bg-zinc-900 h-screen flex flex-col`}
+				>
 					<Navbar />
 					{children}
 					<Footer />

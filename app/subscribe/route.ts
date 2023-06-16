@@ -6,18 +6,20 @@ export async function POST(request: Request) {
 		apiVersion: "2022-11-15",
 	});
 
-	const { planId } = await request.json();
-
 	const session = await stripe.checkout.sessions.create({
 		line_items: [
 			{
-				price: planId,
+				price: process.env.PRICE_ID,
 				quantity: 1,
 			},
 		],
 		mode: "subscription",
-		success_url: "http://localhost:3000/success",
-		cancel_url: "http://localhost:3000/cancel",
+		success_url: `${process.env.NEXTAUTH_URL}/success`,
+		cancel_url: `${process.env.NEXTAUTH_URL}/cancel`,
+		subscription_data: {
+			trial_period_days: 14,
+		},
 	});
+
 	return NextResponse.json(session.url);
 }

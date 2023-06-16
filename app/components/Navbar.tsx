@@ -8,17 +8,19 @@ import { AuthButton } from "./Buttons";
 
 export const Navbar = () => {
 	return (
-		<header className="pt-10 py-4 px-16 absolute w-full top-0 border-b border-gray-800">
+		<header className="pt-10 py-4 px-16  w-full  border-b border-gray-800">
 			<div className="flex items-center text-gray-100 justify-between w-full">
 				{/* logo */}
-				<div className=" flex items-center ">
+				<Link href={"/"} className=" flex items-center ">
 					<Image src={logo} alt="logo" height={50} width={50} />
 					<h1 className="ml-2 font-bold text-2xl">ProductVision3D</h1>
-				</div>
+				</Link>
 				{/* Links */}
 				<div className="flex items-center space-x-2">
-					<Link href="/">Design</Link>
-					<Link href="/">Community</Link>
+					<Link href="/">Designs</Link>
+					<Link href="https://billing.stripe.com/p/login/test_9AQg2E80Z5z6bpSeUU">
+						Customer Portal
+					</Link>
 				</div>
 				{/* Button  */}
 				<AuthButton className="btn" />

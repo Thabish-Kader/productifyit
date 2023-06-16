@@ -47,8 +47,15 @@ export const Button = ({
 	);
 };
 
-const handleSubscribe = () => {
-	console.log("Clicked");
+const handleSubscribe = async () => {
+	const res = await fetch("/subscribe", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	});
+	const url = await res.json();
+	window.location.href = url;
 };
 
 export const SubscribeButton = ({

@@ -2,11 +2,11 @@ import Image from "next/image";
 import React from "react";
 import proto from "../../public/assets/proto.webp";
 import stevejobs from "../../public/assets/steve.webp";
-import { Button, SubscribeButton } from "./Buttons";
+import { SubscribeButton } from "./Buttons";
 
 export const Hero = () => {
 	return (
-		<section className="mt-32 text-gray-100  ">
+		<section className=" text-gray-100  ">
 			<div className="flex flex-col md:flex-row">
 				<div className="pr-8 mt-20">
 					<h1 className="text-4xl font-bold ">
@@ -22,7 +22,8 @@ export const Hero = () => {
 						design compelling digital products for your website,
 						applications, or brand in 3D.
 					</p>
-					<SubscribeButton className="btn mt-6 p-5 px-10">
+
+					<SubscribeButton className="btn mt-2 px-8 py-4">
 						Get Started
 					</SubscribeButton>
 				</div>

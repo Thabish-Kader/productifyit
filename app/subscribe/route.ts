@@ -15,7 +15,7 @@ export async function POST(request: Request) {
 			},
 		],
 		mode: "subscription",
-		success_url: `${process.env.NEXTAUTH_URL}/success`,
+		success_url: `${process.env.NEXTAUTH_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
 		cancel_url: `${process.env.NEXTAUTH_URL}/cancel`,
 		subscription_data: {
 			trial_period_days: 14,

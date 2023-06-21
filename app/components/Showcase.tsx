@@ -2,6 +2,7 @@ import React from "react";
 
 import { FeatureCard } from "./FeatureCard";
 import { featureCardInfo } from "@/constants";
+import { Button, SubscribeButton } from "./Buttons";
 
 export const Showcase = () => {
 	return (
@@ -48,6 +49,8 @@ export const Showcase = () => {
 						/>
 					))}
 				</div>
+
+				<SubscribeButton className="btn mt-10 px-12 py-2 text-2xl" />
 			</div>
 		</section>
 	);

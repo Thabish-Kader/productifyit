@@ -6,9 +6,12 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"stripe:listen": "stripe listen --forward-to http://localhost:3000/api/webhooks"
 	},
 	"dependencies": {
+		"@aws-sdk/client-dynamodb": "^3.354.0",
+		"@aws-sdk/lib-dynamodb": "^3.354.0",
 		"@react-three/drei": "^9.74.8",
 		"@react-three/fiber": "^8.13.1",
 		"@types/node": "20.2.6",

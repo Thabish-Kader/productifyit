@@ -1,7 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import Stripe from "stripe";
-import docClient from "@/app/dynamodb";
+import docClient from "@/app/utils/dynamodb";
 import { PutCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
 import { TCustomer } from "@/types";
 
@@ -22,7 +22,7 @@ export const authOptions: NextAuthOptions = {
 		async session({ session }) {
 			// If customer exists
 			const queryUserParams = {
-				TableName: "product-vision-customers",
+				TableName: process.env.TABLE_NAME,
 				KeyConditionExpression: "email = :email",
 				ExpressionAttributeValues: {
 					":email": session.user?.email!,
@@ -53,7 +53,7 @@ export const authOptions: NextAuthOptions = {
 					session!.user!.isActive = false;
 
 					const createUserParmas = {
-						TableName: "product-vision-customers",
+						TableName: process.env.TABLE_NAME,
 						Item: {
 							...customer,
 							isActive: false,

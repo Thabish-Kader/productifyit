@@ -14,9 +14,10 @@ declare global {
 			STRIPE_SECRET_KEY: string;
 			PRICE_ID: string;
 			STRIPE_WEBHOOK_SECRET: string;
+			NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: string;
 
 			// AWS
-			NEXT_PUBLIC_TABLE_NAME: string;
+			TABLE_NAME: string;
 			AWS_REGION: string;
 			AWS_ACCESS_KEY_ID: string;
 			AWS_SECRET_ACCESS_KEY: string;

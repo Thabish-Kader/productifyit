@@ -1,6 +1,8 @@
 import Stripe from "stripe";
 
 import { NextRequest, NextResponse } from "next/server";
+import docClient from "@/app/utils/dynamodb";
+import { UpdateCommand } from "@aws-sdk/lib-dynamodb";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 	// https://github.com/stripe/stripe-node#configuration
@@ -40,14 +42,41 @@ const webhookHandler = async (req: NextRequest) => {
 
 		// getting to the data we want from the event
 		const subscription = event.data.object as Stripe.Subscription;
+		const subscriptionId = subscription.id;
+		const customerEmail = subscription.metadata.payingUserEmail;
 
 		switch (event.type) {
 			case "customer.subscription.created":
-				//TODO: Create cutomer in database
+				const updateUserSubscriptionTrueParmas = {
+					TableName: process.env.TABLE_NAME,
+					Key: { email: customerEmail },
+					UpdateExpression:
+						"SET isActive = :isActive, subscriptionId = :subscriptionId",
+					ExpressionAttributeValues: {
+						":isActive": true,
+						":subscriptionId": subscriptionId,
+					},
+				};
+
+				await docClient.send(
+					new UpdateCommand(updateUserSubscriptionTrueParmas)
+				);
 				break;
 			case "customer.subscription.deleted":
-				// TODO: Update the cutomer so that the user is no longer subscribed
+				const updateUserSubscriptionFalseParmas = {
+					TableName: process.env.TABLE_NAME,
+					Key: { email: customerEmail },
+					UpdateExpression: "SET isActive = :isActive",
+					ExpressionAttributeValues: {
+						":isActive": false,
+					},
+				};
+
+				await docClient.send(
+					new UpdateCommand(updateUserSubscriptionFalseParmas)
+				);
 				break;
+
 			default:
 				console.warn(`🤷‍♀️ Unhandled event type: ${event.type}`);
 				break;

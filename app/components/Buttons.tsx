@@ -3,6 +3,7 @@ import { button } from "leva";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import React from "react";
+import getStripe from "../utils/getStripe";
 
 type PropsAuthButton = {
 	className?: string;
@@ -70,15 +71,23 @@ export const Button = ({
 };
 
 const handleSubscribe = async (email: string) => {
-	const res = await fetch("/subscribe", {
+	const res = await fetch("/api/stripe/subscription", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({ email }),
 	});
-	const url = await res.json();
-	window.location.href = url;
+	const checkoutSession = await res.json().then((value) => {
+		return value.session;
+	});
+
+	const stripe = await getStripe();
+	const { error } = await stripe!.redirectToCheckout({
+		sessionId: checkoutSession.id,
+	});
+
+	console.warn(error.message);
 };
 
 export const SubscribeButton = ({

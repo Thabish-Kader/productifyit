@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import logo from "../../public/assets/logo.webp";
+import logo from "../icon.png";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { AuthButton } from "./Buttons";

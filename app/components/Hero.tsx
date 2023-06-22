@@ -7,7 +7,7 @@ export const Hero = () => {
 	return (
 		<section className="">
 			<div className="text-center max-w-7xl mx-auto pt-32 md:pt-40 pb-32 sm:py-32 flex flex-col sm:items-center justify-center">
-				<div className="rounded-full w-fit text-xs text-gray-400 py-1 px-4 mb-4 bg-gray-900 border border-indigo-900/50 shadow-md">
+				<div className="rounded-full w-fit text-xs text-gray-400 py-1 px-4 mb-4 bg-gray-900 border border-blue-500/50 shadow-md">
 					Redefine Design: Transcend 2D, Embrace the Limitless World
 					of 3D.
 				</div>

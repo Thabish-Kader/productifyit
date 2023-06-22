@@ -35,7 +35,9 @@ export const FeatureCard = ({
 					{title}
 				</h5>
 
-				<p className="mb-3 font-normal  text-gray-400">{description}</p>
+				<p className="mb-3 text-base font-medium text-gray-400 md:text-md">
+					{description}
+				</p>
 			</div>
 		</div>
 	);

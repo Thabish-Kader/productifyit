@@ -105,7 +105,7 @@ export const SubscribeButton = ({
 					onClick={() => handleSubscribe(session?.user?.email!)}
 					{...props}
 				>
-					Get Started
+					Start for Free
 				</button>
 			) : (
 				<button

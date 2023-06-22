@@ -4,6 +4,6 @@
 
 @layer components {
 	.btn {
-		@apply text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700;
+		@apply text-gray-100 bg-gray-100/10 py-2.5 px-4 rounded-md md:mr-6 text-sm font-semibold hover:bg-gray-100/20 hover:scale-110 transition-all duration-300;
 	}
 }

@@ -15,7 +15,7 @@ export const FeatureCard = ({
 	gradientColors,
 }: FeatureCardProps) => {
 	return (
-		<div className=" border rounded-lg shadow bg-zinc-900/90 border-gray-700">
+		<div className=" border border-blue-800 bg-black/30 rounded-lg shadow- shadow-blue-500/50 flex-col p-6 md:p-12">
 			<div className="relative h-[300px]">
 				<Image
 					className="rounded-t-lg object-cover"

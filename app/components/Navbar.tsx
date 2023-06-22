@@ -8,24 +8,34 @@ import { AuthButton } from "./Buttons";
 
 export const Navbar = () => {
 	return (
-		<header className="pt-10 py-4 px-16  w-full  border-b border-gray-800">
-			<div className="flex items-center text-gray-100 justify-between w-full">
-				{/* logo */}
-				<Link href={"/"} className=" flex items-center ">
-					<Image src={logo} alt="logo" height={50} width={50} />
-					<h1 className="ml-2 font-bold text-md sm:text-2xl">
-						ProductVision3D
-					</h1>
-				</Link>
-				{/* Links */}
-				<div className=" items-center space-x-2 hidden md:flex">
-					<Link href="/">Designs</Link>
-					<Link href="https://billing.stripe.com/p/login/test_9AQg2E80Z5z6bpSeUU">
-						Customer Portal
+		<header className="border-b border-gray-900 bg-black/30">
+			<div className="relative z-50 max-w-7xl mx-auto p-4 sm:px-6 lg:px-8 h-20 backdrop-blur-md">
+				<div className="flex items-center text-white justify-between w-full">
+					{/* logo */}
+					<Link href={"/"} className=" flex items-center ">
+						<Image src={logo} alt="logo" height={50} width={50} />
+						<h1 className="ml-2 font-bold text-md sm:text-2xl">
+							ProductVision3D
+						</h1>
 					</Link>
+					{/* Links */}
+					<div className=" items-center space-x-2 hidden md:flex gap-8">
+						<Link
+							href="/"
+							className="hover:text-white transition text-gray-300"
+						>
+							Designs
+						</Link>
+						<Link
+							href="https://billing.stripe.com/p/login/test_9AQg2E80Z5z6bpSeUU"
+							className="hover:text-white transition text-gray-300"
+						>
+							Customer Portal
+						</Link>
+					</div>
+					{/* Button  */}
+					<AuthButton className="btn" />
 				</div>
-				{/* Button  */}
-				<AuthButton className="btn" />
 			</div>
 		</header>
 	);

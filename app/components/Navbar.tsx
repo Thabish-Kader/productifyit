@@ -1,14 +1,13 @@
-"use client";
 import Image from "next/image";
 import React from "react";
 import logo from "../icon.png";
 import Link from "next/link";
-import { useSession, signIn, signOut } from "next-auth/react";
+
 import { AuthButton } from "./Buttons";
 
 export const Navbar = () => {
 	return (
-		<header className="border-b border-gray-900 bg-black/30">
+		<header className="border-b border-blue-500 bg-black/30">
 			<div className="relative z-50 max-w-7xl mx-auto p-4 sm:px-6 lg:px-8 h-20 backdrop-blur-md">
 				<div className="flex items-center text-white justify-between w-full">
 					{/* logo */}
@@ -21,10 +20,10 @@ export const Navbar = () => {
 					{/* Links */}
 					<div className=" items-center space-x-2 hidden md:flex gap-8">
 						<Link
-							href="/"
+							href="/billinginfo"
 							className="hover:text-white transition text-gray-300"
 						>
-							Designs
+							Billing Info
 						</Link>
 						<Link
 							href="https://billing.stripe.com/p/login/test_9AQg2E80Z5z6bpSeUU"

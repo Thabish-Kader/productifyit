@@ -2,7 +2,7 @@ import React from "react";
 
 export const Footer = () => {
 	return (
-		<footer className="mt-auto rounded-lg shadow border-t border-2 border-gray-800 bg-black/30 ">
+		<footer className="mt-auto rounded-lg shadow border-t  border-blue-500 bg-black/30 ">
 			<div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
 				<div className="sm:flex sm:items-center sm:justify-between">
 					<a
@@ -45,7 +45,7 @@ export const Footer = () => {
 						</li>
 					</ul>
 				</div>
-				<hr className="my-6  sm:mx-auto border-gray-700 lg:my-8" />
+				<hr className="my-6  sm:mx-auto border-blue-500 lg:my-8" />
 				<span className="block text-sm  sm:text-center text-gray-400">
 					© 2023 ProductVision3D . All Rights Reserved.
 				</span>

@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { SubscribeButton } from "../components/Buttons";
 
 const Error = ({ error, reset }: { error: Error; reset: () => void }) => {

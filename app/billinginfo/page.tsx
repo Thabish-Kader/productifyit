@@ -1,43 +1,86 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { mockbilling } from "../mockData";
+
 import { TBilling } from "@/types";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Billing = () => {
-	// const [billingInfo, setBillingInfo] = useState<TBilling>();
-	const { data: session } = useSession();
-	// useEffect(() => {
-	// 	async function fetchData() {
-	// 		try {
-	// 			const response = await fetch("/api/stripe/billinginfo");
-	// 			const data = await response.json();
-	// 			setBillingInfo(data);
-	// 		} catch (error) {
-	// 			console.error(error);
-	// 		}
-	// 	}
+	const [billingInfo, setBillingInfo] = useState<TBilling>();
+	const [isLoading, setIsLoading] = useState(false);
+	const { data: session, status } = useSession();
+	const router = useRouter();
+	const notify = () =>
+		toast.success("Subscription cancelled successfully", {
+			position: "top-center",
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: "dark",
+		});
 
-	// 	fetchData();
-	// }, []);
-	// setBillingInfo(mockbilling.subscription);
-	const currentPeriodEnd = new Date(
-		mockbilling.subscription.current_period_end * 1000
-	); // Multiply by 1000 to convert from seconds to milliseconds
+	useEffect(() => {
+		async function fetchData() {
+			try {
+				const response = await fetch("/api/stripe/billinginfo");
+				const data = await response
+					.json()
+					.then((value) => value.subscription);
+
+				setBillingInfo(data);
+			} catch (error) {
+				console.error(error);
+			}
+		}
+
+		fetchData();
+	}, []);
+
+	const handleDeleteSubscription = async () => {
+		setIsLoading(true);
+		try {
+			const res = await fetch(`/api/stripe/subscription-cancel`, {
+				method: "POST",
+			});
+
+			const subscription = await res.json().then((value) => {
+				return value.subscription;
+			});
+			notify();
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setIsLoading(false);
+		}
+	};
+
+	const currentPeriodEnd = new Date(billingInfo?.current_period_end! * 1000); // Multiply by 1000 to convert from seconds to milliseconds
 	const currentPeriodStart = new Date(
-		mockbilling.subscription.current_period_start * 1000
+		billingInfo?.current_period_start! * 1000
 	);
+	const trialPeriod = new Date(billingInfo?.trial_end! * 1000);
+	const billingPrice = billingInfo?.plan.amount! / 100;
 
-	console.log(currentPeriodEnd); // Output: Fri Oct 06 2023 01:21:43 GMT+0000 (Coordinated Universal Time)
-	console.log(currentPeriodStart);
+	useEffect(() => {
+		if (status === "unauthenticated" || session?.user.isActive === false) {
+			throw new Error("User is not authenticated");
+		}
+	});
+
 	return (
 		<div className="flex flex-col h-screen">
 			<Navbar />
 			<main className=" my-12 h-full w-full flex flex-col justify-center items-center text-gray-100">
-				<div className=" border border-indigo-950 bg-primary p-4 flex flex-col ">
+				<div className=" border border-indigo-950 bg-black/30 py-4 px-12 flex flex-col ">
 					<h1 className="text-center text-2xl font-bold tracking-wider py-4">
 						Billing Information
 					</h1>
@@ -69,10 +112,50 @@ const Billing = () => {
 								{currentPeriodEnd.toDateString()}
 							</p>
 						</div>
+						<div className="py-4">
+							<p className=" text-md font-semibold">
+								Price : {billingPrice} USD / month
+							</p>
+							{billingInfo?.trial_end && (
+								<p className="text-md font-semibold">
+									Trial Period Ends :{" "}
+									{trialPeriod.toDateString()}
+								</p>
+							)}
+							<p className="text-md font-semibold capitalize">
+								Status: {billingInfo?.status}
+							</p>
+						</div>
 					</div>
-					<button className="btn w-full">Cancel Subscription</button>
+					<button
+						className="btn w-full disabled:cursor-not-allowed"
+						onClick={handleDeleteSubscription}
+						disabled={isLoading}
+					>
+						{isLoading ? "Canceling..." : "Cancel Subscription"}
+					</button>
+					<Link
+						href={`https://billing.stripe.com/p/login/test_9AQg2E80Z5z6bpSeUU`}
+						className="pt-8 text-center text-md font-semibold capitalize text-gray-400 hover:text-white transition-colors duration-300"
+					>
+						Customer Portal
+					</Link>
 				</div>
+
+				<ToastContainer
+					position="top-center"
+					autoClose={5000}
+					hideProgressBar={false}
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss={false}
+					draggable
+					pauseOnHover
+					theme="dark"
+				/>
 			</main>
+
 			<Footer />
 		</div>
 	);

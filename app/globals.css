@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+	background-color: #000814;
+}
+
 @layer components {
 	.btn {
 		@apply text-gray-100 bg-gray-100/10 py-2.5 px-4 rounded-md md:mr-6 text-sm font-semibold hover:bg-gray-100/20 hover:scale-110 transition-all duration-300 border border-indigo-800/20;

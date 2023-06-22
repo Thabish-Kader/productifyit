@@ -37,7 +37,7 @@ export const Hero = () => {
 				Like a Pro
 			</h1>
 			<div className="mt-4 relative">
-				<div className="absolute inset-0.5  bg-gradient-to-r from-blue-800  to-blue-900 blur-xl"></div>
+				<div className="absolute inset-0.5  bg-gradient-to-r from-blue-800  to-blue-900 blur-xl animate-pulse"></div>
 				<video
 					controls
 					className="relative ring-1 ring-blue-500 rounded-lg shadow-lg"

@@ -1,9 +1,9 @@
 "use client";
-import { button } from "leva";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import React from "react";
 import getStripe from "../utils/getStripe";
+import { useRouter } from "next/navigation";
 
 type PropsAuthButton = {
 	className?: string;
@@ -96,24 +96,33 @@ export const SubscribeButton = ({
 	...props
 }: PropsButton) => {
 	const { data: session } = useSession();
-
+	const router = useRouter();
+	console.log(session?.user);
 	return (
 		<>
-			{session ? (
-				<button
-					className={`${className} disabled:bg-gray-700`}
-					onClick={() => handleSubscribe(session?.user?.email!)}
-					{...props}
-				>
-					Start for Free
-				</button>
-			) : (
+			{!session ? (
 				<button
 					className={`${className} disabled:bg-gray-700`}
 					onClick={() => signIn("google")}
 					{...props}
 				>
 					Sign in to Create Designs
+				</button>
+			) : session?.user.isActive ? (
+				<button
+					className={`${className} disabled:bg-gray-700`}
+					onClick={() => router.push("/create")}
+					{...props}
+				>
+					Start Designing
+				</button>
+			) : (
+				<button
+					className={`${className} disabled:bg-gray-700`}
+					onClick={() => handleSubscribe(session?.user?.email!)}
+					{...props}
+				>
+					Subscribe
 				</button>
 			)}
 		</>

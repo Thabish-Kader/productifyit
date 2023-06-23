@@ -97,7 +97,7 @@ export const SubscribeButton = ({
 }: PropsButton) => {
 	const { data: session } = useSession();
 	const router = useRouter();
-	console.log(session?.user);
+
 	return (
 		<>
 			{!session ? (

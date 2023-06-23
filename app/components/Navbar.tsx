@@ -20,7 +20,7 @@ export const Navbar = () => {
 					{/* Links */}
 					<div className=" items-center space-x-2 hidden md:flex gap-8">
 						<Link
-							href="/billinginfo"
+							href="/billing"
 							className="hover:text-white transition text-gray-300"
 						>
 							Billing Info

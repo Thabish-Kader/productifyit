@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
 import { TBilling } from "@/types";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
@@ -9,13 +8,22 @@ import { useSession } from "next-auth/react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 const Billing = () => {
 	const [billingInfo, setBillingInfo] = useState<TBilling>();
 	const [isLoading, setIsLoading] = useState(false);
-	const { data: session, status } = useSession();
-	const router = useRouter();
+	const { data: session, status } = useSession({
+		required: true,
+		onUnauthenticated() {
+			redirect("/");
+		},
+	});
+
+	if (session?.user.isActive === false) {
+		throw new Error("User is not subscribed!");
+	}
+
 	const notify = () =>
 		toast.success("Subscription cancelled successfully", {
 			position: "top-center",
@@ -70,12 +78,6 @@ const Billing = () => {
 	const trialPeriod = new Date(billingInfo?.trial_end! * 1000);
 	const billingPrice = billingInfo?.plan.amount! / 100;
 
-	useEffect(() => {
-		if (status === "unauthenticated" || session?.user.isActive === false) {
-			throw new Error("User is not authenticated");
-		}
-	});
-
 	return (
 		<div className="flex flex-col h-screen">
 			<Navbar />
@@ -90,7 +92,7 @@ const Billing = () => {
 							className="rounded-full object-cover "
 							width={60}
 							height={60}
-							alt={session?.user?.name!}
+							alt={session?.user?.name! || "profile Image"}
 						/>
 					</div>
 					<div className="flex flex-col text-gray-300">

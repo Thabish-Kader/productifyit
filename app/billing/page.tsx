@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { TBilling } from "@/types";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
@@ -9,10 +9,12 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import Loading from "./loading";
 
 const Billing = () => {
 	const [billingInfo, setBillingInfo] = useState<TBilling>();
 	const [isLoading, setIsLoading] = useState(false);
+	const [isLoadingData, setIsLoadingData] = useState(true);
 	const { data: session, status } = useSession({
 		required: true,
 		onUnauthenticated() {
@@ -25,16 +27,19 @@ const Billing = () => {
 	}
 
 	const notify = () =>
-		toast.success("Subscription cancelled successfully", {
-			position: "top-center",
-			autoClose: 5000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: "dark",
-		});
+		toast.success(
+			"Subscription cancelled successfully! . You won't be charged in the next billing cycle.",
+			{
+				position: "top-center",
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "dark",
+			}
+		);
 
 	useEffect(() => {
 		async function fetchData() {
@@ -47,6 +52,8 @@ const Billing = () => {
 				setBillingInfo(data);
 			} catch (error) {
 				console.error(error);
+			} finally {
+				setIsLoadingData(false);
 			}
 		}
 
@@ -78,9 +85,14 @@ const Billing = () => {
 	const trialPeriod = new Date(billingInfo?.trial_end! * 1000);
 	const billingPrice = billingInfo?.plan.amount! / 100;
 
+	if (isLoadingData) {
+		return <Loading />;
+	}
+
 	return (
 		<div className="flex flex-col h-screen">
 			<Navbar />
+
 			<main className=" my-12 h-full w-full flex flex-col justify-center items-center text-gray-100">
 				<div className=" border border-indigo-950 bg-black/30 py-4 px-12 flex flex-col ">
 					<h1 className="text-center text-2xl font-bold tracking-wider py-4">

@@ -9,6 +9,18 @@ import { redirect } from "next/navigation";
 import "@smastrom/react-rating/style.css";
 import "react-toastify/dist/ReactToastify.css";
 
+const Polygon = (
+	<path d="m16 0 13.8564065 8v16l-13.8564065 8-13.85640646-8v-16zm6.550845 10.6744304-6.5625807 3.489-6.56205691-3.489-.93894312 1.7658952 6.50100003 3.4561048.0002619 7.7691392h2l-.0002619-7.7701392 6.5015238-3.4551048z" />
+);
+
+const customStyles = {
+	itemShapes: Polygon,
+	activeFillColor: "white",
+	activeBoxColor: "#FFA500",
+	inactiveFillColor: "white",
+	inactiveBoxColor: "grey",
+};
+
 const Rate = () => {
 	const { data: session } = useSession({
 		required: true,
@@ -17,7 +29,7 @@ const Rate = () => {
 		},
 	});
 	const [review, setReview] = useState("");
-	const [rateing, setRateing] = useState(3);
+	const [rateing, setRateing] = useState(4);
 	const [isLoading, setIsLoading] = useState(false);
 	const customerEmail = session?.user?.email;
 	const notify = () =>
@@ -75,9 +87,13 @@ const Rate = () => {
 						/>
 
 						<Rating
-							className="my-2 h-14 max-w-[180px]"
 							value={rateing}
 							onChange={setRateing}
+							itemStyles={customStyles}
+							style={{ maxWidth: 300, padding: 10 }}
+							transition="position"
+							radius="medium"
+							spaceBetween="small"
 						/>
 
 						<button

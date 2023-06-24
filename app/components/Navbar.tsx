@@ -14,7 +14,10 @@ export const Navbar = () => {
 					<Link href={"/"} className=" flex items-center ">
 						<Image src={logo} alt="logo" height={50} width={50} />
 						<h1 className="ml-2 font-bold text-md sm:text-2xl">
-							ProductVision3D
+							Productify{" "}
+							<span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to to-blue-500">
+								IT
+							</span>
 						</h1>
 					</Link>
 					{/* Links */}
@@ -30,6 +33,12 @@ export const Navbar = () => {
 							className="hover:text-white transition text-gray-300"
 						>
 							Customer Portal
+						</Link>
+						<Link
+							href="/rate"
+							className="hover:text-white transition text-gray-300"
+						>
+							Rate Us
 						</Link>
 					</div>
 					{/* Button  */}

@@ -6,14 +6,11 @@ export const Footer = () => {
 		<footer className="mt-auto rounded-lg shadow border-t  border-blue-500 bg-black/30 ">
 			<div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
 				<div className="sm:flex sm:items-center sm:justify-between">
-					<a
-						href="https://flowbite.com/"
-						className="flex items-center mb-4 sm:mb-0"
-					>
+					<Link href="/" className="flex items-center mb-4 sm:mb-0">
 						<span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
-							ProductVision3D
+							ProductifyIT
 						</span>
-					</a>
+					</Link>
 					<ul className="flex flex-wrap items-center mb-6 text-sm font-medium  sm:mb-0 text-gray-400">
 						<li>
 							<Link
@@ -48,7 +45,7 @@ export const Footer = () => {
 				</div>
 				<hr className="my-6  sm:mx-auto border-blue-500 lg:my-8" />
 				<span className="block text-sm  sm:text-center text-gray-400">
-					© 2023 ProductVision3D . All Rights Reserved.
+					© 2023 ProductifyIT . All Rights Reserved.
 				</span>
 			</div>
 		</footer>

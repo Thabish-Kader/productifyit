@@ -1,7 +1,7 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import getStripe from "../utils/getStripe";
 import { useRouter } from "next/navigation";
 
@@ -70,33 +70,41 @@ export const Button = ({
 	);
 };
 
-const handleSubscribe = async (email: string) => {
-	const res = await fetch("/api/stripe/subscription", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ email }),
-	});
-	const checkoutSession = await res.json().then((value) => {
-		return value.session;
-	});
-
-	const stripe = await getStripe();
-	const { error } = await stripe!.redirectToCheckout({
-		sessionId: checkoutSession.id,
-	});
-
-	console.warn(error.message);
-};
-
 export const SubscribeButton = ({
 	onClick,
 	className,
 	...props
 }: PropsButton) => {
+	const [isLoading, setIsLoading] = useState(false);
+
 	const { data: session } = useSession();
 	const router = useRouter();
+
+	const handleSubscribe = async (email: string) => {
+		setIsLoading(true);
+
+		try {
+			const res = await fetch("/api/stripe/subscription", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ email }),
+			});
+			const checkoutSession = await res.json().then((value) => {
+				return value.session;
+			});
+
+			const stripe = await getStripe();
+			const { error } = await stripe!.redirectToCheckout({
+				sessionId: checkoutSession.id,
+			});
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setIsLoading(false);
+		}
+	};
 
 	return (
 		<>
@@ -118,11 +126,12 @@ export const SubscribeButton = ({
 				</button>
 			) : (
 				<button
-					className={`${className} disabled:bg-gray-700`}
+					className={`${className} disabled:bg-gray-700 disabled:cursor-not-allowed`}
+					disabled={isLoading}
 					onClick={() => handleSubscribe(session?.user?.email!)}
 					{...props}
 				>
-					Subscribe
+					{isLoading ? "Subscribing..." : "Subscribe"}
 				</button>
 			)}
 		</>

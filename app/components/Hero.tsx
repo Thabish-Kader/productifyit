@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+
 import stevejobs from "../../public/assets/steve.webp";
 import { SubscribeButton } from "./Buttons";
 
@@ -42,7 +42,10 @@ export const Hero = () => {
 					controls
 					className="relative ring-1 ring-blue-500 rounded-lg shadow-lg"
 				>
-					<source src="/demo.mp4" type="video/mp4" />
+					<source
+						src="https://d178vjxoo1snxa.cloudfront.net/demo.mp4"
+						type="video/mp4"
+					/>
 					Your browser does not support the video tag.
 				</video>
 				{/* </div> */}

@@ -1,5 +1,6 @@
 import proto from "../../public/assets/proto.webp";
 import Image from "next/image";
+import { SubscribeButton } from "./Buttons";
 
 const ProductDemo = () => {
 	return (
@@ -22,6 +23,7 @@ const ProductDemo = () => {
 						that shape the future. The digital renaissance awaits,
 						and you hold the key to unlock its transformative power.
 					</p>
+					<SubscribeButton className="btn mt-6 px-8 py-4" />
 				</div>
 				<Image src={proto} alt="proto" width={500} height={500} />
 			</div>

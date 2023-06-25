@@ -22,7 +22,7 @@ const Create = () => {
 			</main>
 		);
 	} else {
-		throw new Error("User has not Subscribed !!");
+		redirect("/create/error");
 	}
 };
 

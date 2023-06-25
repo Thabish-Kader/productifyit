@@ -23,7 +23,7 @@ const Billing = () => {
 	});
 
 	if (session?.user.isActive === false) {
-		throw new Error("User is not subscribed!");
+		redirect("/create/error");
 	}
 
 	const notify = () =>

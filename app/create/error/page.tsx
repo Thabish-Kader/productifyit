@@ -1,7 +1,6 @@
-"use client";
 import { SubscribeButton } from "../../components/Buttons";
 
-const Error = ({ error, reset }: { error: Error; reset: () => void }) => {
+const ErrorPage = () => {
 	return (
 		<main className="flex flex-col items-center justify-center mt-[300px]">
 			{" "}
@@ -13,4 +12,4 @@ const Error = ({ error, reset }: { error: Error; reset: () => void }) => {
 	);
 };
 
-export default Error;
+export default ErrorPage;

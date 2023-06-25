@@ -1,11 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import AWS from "aws-sdk";
 
+// const s3 = new AWS.S3({
+// 	region: process.env.AWS_REGION,
+// 	credentials: {
+// 		accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
+// 		secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
+// 	},
+// });
+
 const s3 = new AWS.S3({
-	region: process.env.AWS_REGION,
+	region: process.env.REGION,
 	credentials: {
-		accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-		secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
+		accessKeyId: process.env.ACCESS_KEY_ID_AWS!,
+		secretAccessKey: process.env.SECRET_ACCESS_KEY_AWS!,
 	},
 });
 

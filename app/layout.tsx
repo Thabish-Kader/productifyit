@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-	title: "ProductVision3D",
+	title: "ProductifyIT",
 	description:
 		"An application that enables entrepreneurs to design digital products within a three-dimensional canvas.",
 	icons: {

@@ -11,6 +11,7 @@ type PropsAuthButton = {
 
 export const AuthButton = ({ className, ...props }: PropsAuthButton) => {
 	const { data: session } = useSession();
+	console.log(session?.user);
 
 	return (
 		<>

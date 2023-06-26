@@ -29,7 +29,7 @@ export const Navbar = () => {
 							Billing Info
 						</Link>
 						<Link
-							href="https://billing.stripe.com/p/login/test_9AQg2E80Z5z6bpSeUU"
+							href="https://billing.stripe.com/p/login/eVa00xbTo4OvgYE288"
 							className="hover:text-white transition text-gray-300"
 						>
 							Customer Portal

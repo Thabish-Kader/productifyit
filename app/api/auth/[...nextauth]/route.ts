@@ -3,6 +3,7 @@ import { TCustomer } from "@/types";
 import { PutCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -48,13 +49,15 @@ export const authOptions: NextAuthOptions = {
 					.then(async (customer) => {
 						session!.user!.id = customer.id;
 						session!.user!.stripeCustomerId = customer.id;
-						session!.user!.isActive = false;
+						// Enable payments by switching to false
+						session!.user!.isActive = true;
 
 						const createUserParmas = {
 							TableName: process.env.TABLE_NAME,
 							Item: {
 								...customer,
-								isActive: false,
+								// Enable payments by switching to false
+								isActive: true,
 							},
 						};
 

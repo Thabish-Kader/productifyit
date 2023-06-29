@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import getStripe from "../utils/getStripe";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type PropsAuthButton = {
 	className?: string;
@@ -138,13 +139,23 @@ export const SubscribeButton = ({
 					Sign in to Create Designs
 				</button>
 			) : session?.user.isActive ? (
-				<button
-					className={`${className} disabled:bg-gray-700`}
-					onClick={() => router.push("/create")}
-					{...props}
-				>
-					Start Designing
-				</button>
+				<div className="grid md:grid-cols-2 gap-4">
+					<Link
+						href={"/create"}
+						className={`${className} disabled:bg-gray-700`}
+						// onClick={() => router.push("/create")}
+						{...props}
+					>
+						Start Designing
+					</Link>
+
+					<Link
+						href={"/rate"}
+						className={`${className} hover:bg-green-500 disabled:bg-gray-700`}
+					>
+						Rate Us
+					</Link>
+				</div>
 			) : (
 				<button
 					className={`${className} disabled:bg-gray-700 disabled:cursor-not-allowed`}

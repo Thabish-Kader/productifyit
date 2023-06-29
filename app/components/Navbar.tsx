@@ -23,14 +23,17 @@ export const Navbar = () => {
 					{/* Links */}
 					<div className=" items-center space-x-2 hidden md:flex gap-8">
 						<Link
-							href="/billing"
-							className="hover:text-white transition text-gray-300"
+							// TODO: Change this to valid url when asking for subscription
+							href="/"
+							className="hover:text-white transition text-gray-500 "
 						>
 							Billing Info
 						</Link>
 						<Link
-							href="https://billing.stripe.com/p/login/eVa00xbTo4OvgYE288"
-							className="hover:text-white transition text-gray-300"
+							// TODO: Change this to valid url when asking for subscription
+
+							href="/"
+							className="hover:text-white transition text-gray-500"
 						>
 							Customer Portal
 						</Link>

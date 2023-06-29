@@ -20,15 +20,17 @@ export async function POST(req: NextRequest) {
 			{ status: 401 }
 		);
 	}
-
+	const userImage = session?.user?.image;
 	try {
 		const updateUserSubscriptionTrueParmas = {
 			TableName: process.env.TABLE_NAME,
 			Key: { email: customerEmail },
-			UpdateExpression: "SET rateing = :rateing, review = :review",
+			UpdateExpression:
+				"SET rateing = :rateing, review = :review, userImage = :userImage",
 			ExpressionAttributeValues: {
 				":rateing": rateing,
 				":review": review,
+				":userImage": userImage,
 			},
 		};
 

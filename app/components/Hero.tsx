@@ -1,6 +1,7 @@
 import Image from "next/image";
 import stevejobs from "../../public/assets/steve.webp";
 import { SubscribeButton } from "./Buttons";
+import Link from "next/link";
 
 export const Hero = () => {
 	return (

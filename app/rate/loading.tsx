@@ -4,9 +4,9 @@ const Loading = () => {
 	return (
 		<div
 			role="status"
-			className="flex flex-col items-center justify-center min-h-screen "
+			className="flex flex-col items-center justify-center  "
 		>
-			<div className=" h-[500px] w-[400px]  border p-4  border-blue-500 rounded shadow animate-pulse flex flex-col items-center justify-center ">
+			<div className=" h-[300px] w-[670px]  border p-4  border-blue-500 rounded shadow animate-pulse flex flex-col items-center justify-center ">
 				<svg
 					className=" w-14 h-14 text-gray-700"
 					aria-hidden="true"
@@ -23,14 +23,10 @@ const Loading = () => {
 
 				<div className="flex items-center mt-4 ">
 					<div className="space-y-4">
-						<div className="w-56 h-4  rounded-full bg-gray-700"></div>
+						<div className="w-[500px] h-4  rounded-full bg-gray-700"></div>
+						<div className="w-46 h-16  rounded-md bg-gray-700"></div>
 						<div className="w-46 h-4  rounded-full bg-gray-700"></div>
-						<div className="w-46 h-4  rounded-full bg-gray-700"></div>
-						<div className="w-46 h-4  rounded-full bg-gray-700"></div>
-						<div className="w-46 h-4  rounded-full bg-gray-700"></div>
-						<div className="w-46 h-4  rounded-full bg-gray-700"></div>
-						<div className="w-46 h-4  rounded-full bg-gray-700"></div>
-						<div className="w-46 h-4  rounded-full bg-gray-700"></div>
+						<div className="w-46 h-8  rounded-md bg-gray-700"></div>
 					</div>
 				</div>
 				<span className="sr-only">Loading...</span>

@@ -3,23 +3,12 @@ import React, { useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { ToastContainer, toast } from "react-toastify";
+import Image from "next/image";
 import { Rating } from "@smastrom/react-rating";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import "@smastrom/react-rating/style.css";
 import "react-toastify/dist/ReactToastify.css";
-
-const Polygon = (
-	<path d="m16 0 13.8564065 8v16l-13.8564065 8-13.85640646-8v-16zm6.550845 10.6744304-6.5625807 3.489-6.56205691-3.489-.93894312 1.7658952 6.50100003 3.4561048.0002619 7.7691392h2l-.0002619-7.7701392 6.5015238-3.4551048z" />
-);
-
-const customStyles = {
-	itemShapes: Polygon,
-	activeFillColor: "white",
-	activeBoxColor: "#FFA500",
-	inactiveFillColor: "white",
-	inactiveBoxColor: "grey",
-};
 
 const Rate = () => {
 	const { data: session } = useSession({
@@ -75,22 +64,37 @@ const Rate = () => {
 			<Navbar />
 			<main className=" my-12 h-full w-full flex flex-col justify-center items-center text-gray-100">
 				<div className="max-w-[700px] w-full px-4">
-					<div className=" border border-indigo-950 bg-black/30 py-4 px-12 flex flex-col  ">
-						<h1 className="text-center text-2xl font-bold tracking-wider py-4">
-							Leave us a Rating
+					<div className=" border border-blue-500 bg-black/30 py-4 px-12 flex flex-col  ">
+						<h1 className="text-center text-2xl font-bold text-gray-200 py-4">
+							Thank you for your time {session?.user.name}
 						</h1>
+						<p className="text-center text-sm italic font-semibold text-blue-500 pb-3">
+							Your valuable input will help us deliver an even
+							better product.
+						</p>
+						<div className="flex items-center justify-center">
+							<Image
+								src={session?.user?.image!}
+								className="rounded-full object-cover "
+								width={60}
+								height={60}
+								alt={session?.user?.name! || "profile Image"}
+							/>
+						</div>
+						<h3 className="text-sm md:text-lg font-semibold text-gray-300 py-4">
+							Signed in as : {session?.user?.email}
+						</h3>
 						<textarea
 							value={review}
 							onChange={(e) => setReview(e.target.value)}
-							className="p-2 bg-transparent border border-indigo-900 rounded-lg my-2 outline-none"
+							className="p-2 bg-transparent border border-blue-500/50 rounded-lg my-2 outline-none"
 							placeholder="Review..."
 						/>
 
 						<Rating
 							value={rateing}
 							onChange={setRateing}
-							itemStyles={customStyles}
-							style={{ maxWidth: 300, padding: 10 }}
+							style={{ maxWidth: 300, padding: 3 }}
 							transition="position"
 							radius="medium"
 							spaceBetween="small"

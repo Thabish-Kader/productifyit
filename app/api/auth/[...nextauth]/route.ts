@@ -1,15 +1,15 @@
+import docClient from "@/app/utils/dynamodb";
+import { TCustomer } from "@/types";
+import { PutCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import Stripe from "stripe";
-import docClient from "@/app/utils/dynamodb";
-import { PutCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
-import { TCustomer } from "@/types";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 	apiVersion: "2022-11-15",
 });
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
 	providers: [
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -17,10 +17,8 @@ export const authOptions: NextAuthOptions = {
 		}),
 	],
 	secret: process.env.NEXTAUTH_SECRET,
-
 	callbacks: {
 		async session({ session }) {
-			// If customer exists
 			const queryUserParams = {
 				TableName: process.env.TABLE_NAME,
 				KeyConditionExpression: "email = :email",
@@ -32,6 +30,7 @@ export const authOptions: NextAuthOptions = {
 			const existingUser = await docClient.send(
 				new QueryCommand(queryUserParams)
 			);
+
 			const customers = existingUser.Items as TCustomer[];
 
 			if (customers.length > 0) {
@@ -41,7 +40,6 @@ export const authOptions: NextAuthOptions = {
 				session.user!.subscriptionId = customers[0].subscriptionId;
 				return session;
 			}
-			// If no customers exists create a new one
 			try {
 				await stripe.customers
 					.create({

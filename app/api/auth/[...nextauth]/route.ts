@@ -1,9 +1,9 @@
 import { authOptions } from "@/app/utils/authOptions";
-import docClient from "@/app/utils/dynamodb";
-import { TCustomer } from "@/types";
-import { PutCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
-import NextAuth, { NextAuthOptions } from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+// import docClient from "@/app/utils/dynamodb";
+// import { TCustomer } from "@/types";
+// import { PutCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
+import NextAuth from "next-auth/next";
+// import GoogleProvider from "next-auth/providers/google";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {

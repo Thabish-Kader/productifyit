@@ -1,14 +1,14 @@
-import { authOptions } from "@/app/utils/authOptions";
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 // import docClient from "@/app/utils/dynamodb";
 // import { TCustomer } from "@/types";
 // import { PutCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
-import NextAuth from "next-auth/next";
+import NextAuth from "next-auth";
 // import GoogleProvider from "next-auth/providers/google";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-	apiVersion: "2022-11-15",
-});
+// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+// 	apiVersion: "2022-11-15",
+// });
 
 // export const authOptions: NextAuthOptions = {
 // 	providers: [

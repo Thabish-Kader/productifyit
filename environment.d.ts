@@ -18,9 +18,9 @@ declare global {
 
 			// AWS
 			TABLE_NAME: string;
-			AWS_REGION: string;
-			AWS_ACCESS_KEY_ID: string;
-			AWS_SECRET_ACCESS_KEY: string;
+			REGION: string;
+			ACCESS_KEY_ID: string;
+			SECRET_ACCESS_KEY: string;
 		}
 	}
 }

@@ -10,11 +10,33 @@ type PropsAuthButton = {
 };
 
 export const AuthButton = ({ className, ...props }: PropsAuthButton) => {
-	const { data: session } = useSession();
-	console.log(session?.user);
-	return (
-		<>
-			{session ? (
+	const { data: session, status } = useSession();
+	const [isLoading, setIsLoading] = useState(false);
+	if (status === "loading") {
+		return <SigninLoadingSkeleton />;
+	} else if (status === "unauthenticated") {
+		const signInWithGoogle = async () => {
+			try {
+				setIsLoading(true);
+				await signIn("google");
+			} catch (error) {
+				console.log(error);
+			} finally {
+				setIsLoading(false);
+			}
+		};
+		return (
+			<button
+				className={`${className} disabled:bg-gray-500`}
+				disabled={isLoading}
+				onClick={signInWithGoogle}
+			>
+				{isLoading ? "Signing In..." : "Sign In"}
+			</button>
+		);
+	} else if (status === "authenticated") {
+		return (
+			<>
 				<div className="flex items-center gap-2">
 					<Image
 						src={session?.user?.image!}
@@ -39,16 +61,9 @@ export const AuthButton = ({ className, ...props }: PropsAuthButton) => {
 						Sign Out
 					</button>
 				</div>
-			) : (
-				<button
-					className={`${className}`}
-					onClick={() => signIn("google")}
-				>
-					Sign In
-				</button>
-			)}
-		</>
-	);
+			</>
+		);
+	}
 };
 
 type PropsButton = {
@@ -135,5 +150,30 @@ export const SubscribeButton = ({
 				</button>
 			)}
 		</>
+	);
+};
+
+const SigninLoadingSkeleton = () => {
+	return (
+		<div className="flex items-center justify-center  animate-pulse space-x-3">
+			<svg
+				className="w-10 h-10 text-gray-100/20 border border-blue-500/30 rounded-full"
+				aria-hidden="true"
+				fill="currentColor"
+				viewBox="0 0 20 20"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					fill-rule="evenodd"
+					d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+					clip-rule="evenodd"
+				></path>
+			</svg>
+			<div className=" flex-col space-y-2 hidden sm:flex">
+				<div className="w-20 h-2  rounded-full bg-gray-100/20  border border-blue-500/30"></div>
+				<div className="w-24 h-2  rounded-full bg-gray-100/20 border border-blue-500/30"></div>
+			</div>
+			<div className="w-24 h-8 rounded-lg  bg-gray-100/20 border border-blue-500/30"></div>
+		</div>
 	);
 };

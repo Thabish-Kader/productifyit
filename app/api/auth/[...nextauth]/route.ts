@@ -9,7 +9,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 	apiVersion: "2022-11-15",
 });
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
 	providers: [
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID!,

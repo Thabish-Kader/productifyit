@@ -6,8 +6,8 @@ const ProductDemo = () => {
 	return (
 		<section className="relative my-8">
 			<div className="absolute inset-0 bg-gradient-to-r from-blue-900 from-10%  via-30% to-indigo-900 to-90% blur-xl opacity-10"></div>
-			<div className="relative grid md:flex  items-center ">
-				<div>
+			<div className="relative flex flex-col lg:flex-row  items-center ">
+				<div className="flex flex-col max-w-xl mx-auto">
 					<h2 className="text-white text-3xl md:text-5xl font-semibold shadow-md leading-tight">
 						Design your first{" "}
 						<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600  ">
@@ -25,7 +25,13 @@ const ProductDemo = () => {
 					</p>
 					<SubscribeButton className="btn mt-6 px-8 py-4" />
 				</div>
-				<Image src={proto} alt="proto" width={500} height={500} />
+				<Image
+					src={proto}
+					alt="proto"
+					width={500}
+					height={500}
+					className="pt-4"
+				/>
 			</div>
 		</section>
 	);

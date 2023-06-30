@@ -2,6 +2,7 @@ import Image from "next/image";
 import stevejobs from "../../public/assets/steve.webp";
 import { SubscribeButton } from "./Buttons";
 import Link from "next/link";
+import { ReviewText } from "./ReviewText";
 
 export const Hero = () => {
 	return (
@@ -24,6 +25,8 @@ export const Hero = () => {
 					compelling digital products for your website, applications,
 					or brand in 3D.
 				</p>
+
+				<ReviewText />
 
 				<SubscribeButton className="btn mt-6 px-8 py-4" />
 			</div>

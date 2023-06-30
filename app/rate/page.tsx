@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { ToastContainer, toast } from "react-toastify";
@@ -62,15 +62,17 @@ const Rate = () => {
 	return (
 		<div className="flex flex-col h-screen">
 			<Navbar />
+
 			<main className=" my-12 h-full w-full flex flex-col justify-center items-center text-gray-100">
 				<div className="max-w-[700px] w-full px-4">
 					<div className=" border border-blue-500 bg-black/30 py-4 px-12 flex flex-col  ">
-						<h1 className="text-center text-2xl font-bold text-gray-200 py-4">
-							Thank you for your time {session?.user.name}
+						<h1 className="text-center text-2xl font-bold text-gray-300 py-4">
+							Thank you {session?.user.name}
 						</h1>
-						<p className="text-center text-sm italic font-semibold text-blue-500 pb-3">
-							Your valuable input will help us deliver an even
-							better product.
+						<p className="text-center text-sm italic font-semibold pb-3 text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 from-10% via-amber-500 via-30% to-orange-500 to-90%">
+							“You could have given your time to anything, and yet
+							you chose to invest it here. I take that in high
+							regard. So sincerely, THANK YOU.”
 						</p>
 						<div className="flex items-center justify-center">
 							<Image
@@ -123,6 +125,7 @@ const Rate = () => {
 					theme="dark"
 				/>
 			</main>
+
 			<Footer />
 		</div>
 	);

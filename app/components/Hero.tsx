@@ -1,8 +1,9 @@
 import Image from "next/image";
 import stevejobs from "../../public/assets/steve.webp";
-import { SubscribeButton } from "./Buttons";
+import { SubscribeButton, CreateButton } from "./Buttons";
 import Link from "next/link";
 import { ReviewText } from "./ReviewText";
+import { Router } from "next/router";
 
 export const Hero = () => {
 	return (
@@ -28,7 +29,10 @@ export const Hero = () => {
 
 				<ReviewText />
 
-				<SubscribeButton className="btn mt-6 px-8 py-4" />
+				{/* <SubscribeButton className="btn mt-6 px-8 py-4" /> */}
+				<CreateButton className="btn mt-6 px-8 py-4">
+					Start Designing
+				</CreateButton>
 			</div>
 
 			{/* Video */}
@@ -45,10 +49,7 @@ export const Hero = () => {
 					controls
 					className="relative ring-1 ring-blue-500 rounded-lg shadow-lg"
 				>
-					<source
-						src="https://d178vjxoo1snxa.cloudfront.net/demoo.mp4"
-						type="video/mp4"
-					/>
+					<source src="/show.mp4" type="video/mp4" />
 					Your browser does not support the video tag.
 				</video>
 			</div>

@@ -87,25 +87,6 @@ export const Button = ({
 	);
 };
 
-export const CreateButton = ({
-	onClick,
-	className,
-	children,
-	...props
-}: PropsButton) => {
-	const router = useRouter();
-
-	return (
-		<button
-			className={` ${className}`}
-			onClick={() => router.push("/create")}
-			{...props}
-		>
-			{children}
-		</button>
-	);
-};
-
 export const SubscribeButton = ({
 	onClick,
 	className,

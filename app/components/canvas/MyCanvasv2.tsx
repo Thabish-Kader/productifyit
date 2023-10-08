@@ -158,7 +158,7 @@ export const MyCanvasv2 = () => {
 			<Center>
 				<Box scale={0.5} rotation-y={-10.55} position-y={1.6} />
 			</Center>
-			<Environment preset="city" />
+			{/* <Environment preset="city" /> */}
 			<OrbitControls maxPolarAngle={Math.PI / 2} />
 			<Shadows />
 			<Grid position={[0, -0.69, 0]} args={gridSize} {...gridConfig} />
